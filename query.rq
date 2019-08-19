@@ -1,0 +1,7 @@
+#+ summary: Compound
+#+ endpoint: https://query.wikidata.org/bigdata/namespace/wdq/sparql
+
+SELECT ?molecule ?formula
+WHERE {
+  ?molecule wdt:P274 ?formula .
+}
