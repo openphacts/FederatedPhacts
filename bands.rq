@@ -7,4 +7,8 @@
 #+ defaults:
 #+   - type: http://dbpedia.org/ontology/Band
 
-select distinct ?s where {?s a ?_type_iri} LIMIT 20
+SELECT ?molecule ?formula
+WHERE {
+  ?molecule wdt:P274 ?formula .
+}
+LIMIT 10
