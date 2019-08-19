@@ -45,5 +45,6 @@ select distinct ?tissue ?tisslab where {
   ?e1 :term ?tissue .
   ?tissue rdfs:label ?tisslab .
   ?tissue a :NextprotAnatomyCv  .
-  filter not exists {?tiss2 a :NextprotAnatomyCv  . ?tiss2 :childOf ?tissue filter (?tiss2 != ?tissue )}
+  #Return only cells
+  ?tissue :childOf cv:TS-2035
 }

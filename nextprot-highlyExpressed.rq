@@ -5,7 +5,7 @@
 #+ method: GET
 #+ pagination: 50
 #+ defaults:
-#+   - entry: http://nextprot.org/rdf/entry/NX_Q9Y6A2
+#+   - entry: http://nextprot.org/rdf/entry/NX_O96000
 
 PREFIX : <http://nextprot.org/rdf#>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
@@ -40,8 +40,10 @@ select distinct ?tisslab where {
   ?_entry_iri :isoform ?iso.
   # get all expression
   ?iso :expression ?e1.
-  # highly expressed 
-  ?e1 :evidence/:expressionLevel :High. 
-  ?e1 :term ?tissue .	  
+  # highly expressed
+  ?e1 :evidence/:expressionLevel :High.
+  ?e1 :term ?tissue .
   ?tissue rdfs:label ?tisslab .
+  # Filter out cells
+  filter not exists {?tissue :childOf cv:TS-2035}
 }
