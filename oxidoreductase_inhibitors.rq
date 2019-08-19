@@ -1,0 +1,53 @@
+#+ summary: Compare MW, logP and PSA for known oxidoreductase inhibitors
+#+ endpoint: https://query.wikidata.org/bigdata/namespace/wdq/sparql
+#+ tags:
+#+   - wikidata
+#+ method: GET
+#+ pagination: 50
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX hasValue: <http://semanticscience.org/resource/SIO_000300>
+PREFIX hasAttribute: <http://semanticscience.org/resource/SIO_000008>
+PREFIX psa: <http://semanticscience.org/resource/CHEMINF_000307>
+PREFIX logP: <http://semanticscience.org/resource/CHEMINF_000295>
+PREFIX mw: <http://semanticscience.org/resource/CHEMINF_000216>
+
+  SELECT DISTINCT ?mol ?molLabel ?InChIKey ?mass ?ChEMBL ?ChEMBLUrl ?mw ?PSA ?logP WITH {
+    SELECT DISTINCT ?mol WHERE {
+      ?mol wdt:P31/wdt:P279* wd:Q66587127 .
+    } LIMIT 500
+  } AS %result
+  WITH {
+    SELECT ?mol ?InChIKey ?mass ?ChEMBL ?ChEMBLUrl WHERE {
+      INCLUDE %result
+      OPTIONAL { ?mol wdt:P235 ?InChIKey }
+      OPTIONAL { ?mol wdt:P2067 ?mass }
+      VALUES ?ChEMBLIDdir { wdt:P592 }
+      ?mol ?ChEMBLIDdir ?ChEMBL .
+      OPTIONAL {
+        ?ChEMBLIDpred wikibase:directClaim ?ChEMBLIDdir .
+        ?ChEMBLIDpred wdt:P1921 ?ChEMBLformatterurl .
+      }
+      BIND(IRI(REPLACE(?ChEMBLformatterurl, '\\$1', str(?ChEMBL))) AS ?ChEMBLUrl).
+    }
+  } AS %nextresult
+  WITH {
+    SELECT ?mol ?InChIKey ?mass ?ChEMBL ?ChEMBLUrl ?mw ?PSA ?logP WHERE {
+      INCLUDE %nextresult
+      SERVICE <https://www.ebi.ac.uk/rdf/services/sparql> {
+        ?ChEMBLUrl hasAttribute: ?prop1 .
+        ?prop1 a ?prop1Type ; hasValue: ?mw .
+        ?prop1Type rdfs:subClassOf mw: .
+        ?ChEMBLUrl hasAttribute: ?prop2 .
+        ?prop2 a ?prop2Type ; hasValue: ?PSA .
+        ?prop2Type rdfs:subClassOf psa: .
+        ?ChEMBLUrl hasAttribute: ?prop3 .
+        ?prop3 a ?prop3Type ; hasValue: ?logP .
+        ?prop3Type rdfs:subClassOf logP: .
+      }
+    }
+  } AS %finalresult
+  WHERE {
+    INCLUDE %finalresult
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+  }
