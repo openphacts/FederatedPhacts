@@ -1,0 +1,11 @@
+#+ summary: Compound information query
+#+ endpoint: https://query.wikidata.org/bigdata/namespace/wdq/sparql
+#+ tags:
+#+   - openphacts
+#+ method: GET
+#+ pagination: 50
+
+SELECT DISTINCT ?mol ?molLabel
+WHERE {
+    ?mol wdt:P31/wdt:P279* wd:Q66587127 .
+}
