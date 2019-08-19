@@ -1,5 +1,8 @@
-#+ summary: Compound
 #+ endpoint: https://query.wikidata.org/bigdata/namespace/wdq/sparql
+#+ tags:
+#+   - wikidata
+#+ method: GET
+#+ pagination: 50
 
 SELECT ?molecule ?formula
 WHERE {
