@@ -1,7 +1,5 @@
 #+ summary: Compound information query
 #+ endpoint: https://query.wikidata.org/sparql
-#+ tags:
-#+   - openphacts
 #+ method: GET
 #+ pagination: 50
 
