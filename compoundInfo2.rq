@@ -1,0 +1,13 @@
+#+ summary: Returns information about a single compound
+#+ endpoint: https://query.wikidata.org/bigdata/namespace/wdq/sparql
+#+ tags:
+#+   - openphacts
+#+ method: GET
+#+ pagination: 50
+
+SELECT ?molecule ?moleculeLabel ?formula
+WHERE
+{
+	?molecule wdt:P274 ?formula .
+	SERVICE wikibase:label {  bd:serviceParam wikibase:language "en" . }
+} 
