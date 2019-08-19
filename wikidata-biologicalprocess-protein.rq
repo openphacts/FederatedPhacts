@@ -1,6 +1,7 @@
 #+ summary: Find all proteins involved in a biological process
 #+ endpoint: https://query.wikidata.org/sparql
-
+#+ method: GET
+#+ pagination: 10
 
 PREFIX bd: <http://www.bigdata.com/rdf#>
 PREFIX wikibase: <http://wikiba.se/ontology#>
