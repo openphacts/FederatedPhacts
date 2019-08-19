@@ -1,16 +1,5 @@
 #+ summary: Returns information about a single compound
 #+ endpoint: https://query.wikidata.org/bigdata/namespace/wdq/sparql
-#+ tags:
-#+   - wikidata
-#+ method: GET
-#+ pagination: 50
-
-PREFIX wikibase: <http://wikiba.se/ontology#>
- PREFIX wdata: <http://www.wikidata.org/wiki/Special:EntityData/>
- PREFIX bd: <http://www.bigdata.com/rdf#>
- 
- PREFIX wd: <http://www.wikidata.org/entity/>
- PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 
 SELECT ?molecule ?moleculeLabel ?formula
 WHERE
