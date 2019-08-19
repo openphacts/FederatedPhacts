@@ -1,0 +1,15 @@
+#+ summary: Find all proteins involved in a biological process
+#+ endpoint: http://query.wikidata.org/sparql
+
+
+PREFIX bd: <http://www.bigdata.com/rdf#>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wd:  <http://www.wikidata.org/entity/>
+
+SELECT ?protein ?proteinLabel WHERE {
+  ?protein wdt:P682 ?process .
+  ?protein wdt:P31 wd:Q8054 .
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
