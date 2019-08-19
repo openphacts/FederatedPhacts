@@ -1,0 +1,49 @@
+#+ summary: Cells in which a given protein is highly expressed
+#+ endpoint: https://api.nextprot.org/sparql
+#+ tags:
+#+   - nextprot
+#+ method: GET
+#+ pagination: 50
+#+ defaults:
+#+   - entry: http://nextprot.org/rdf/entry/NX_O96000
+
+PREFIX : <http://nextprot.org/rdf#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX up: <http://purl.uniprot.org/core/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX entry: <http://nextprot.org/rdf/entry/>
+PREFIX isoform: <http://nextprot.org/rdf/isoform/>
+PREFIX annotation: <http://nextprot.org/rdf/annotation/>
+PREFIX evidence: <http://nextprot.org/rdf/evidence/>
+PREFIX xref: <http://nextprot.org/rdf/xref/>
+PREFIX publication: <http://nextprot.org/rdf/publication/>
+PREFIX identifier: <http://nextprot.org/rdf/identifier/>
+PREFIX cv: <http://nextprot.org/rdf/terminology/>
+PREFIX gene: <http://nextprot.org/rdf/gene/>
+PREFIX source: <http://nextprot.org/rdf/source/>
+PREFIX db: <http://nextprot.org/rdf/db/>
+PREFIX context: <http://nextprot.org/rdf/context/>
+PREFIX interaction: <http://nextprot.org/rdf/interaction/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX uniprot: <http://purl.uniprot.org/uniprot/>
+PREFIX unipage: <http://www.uniprot.org/uniprot/>
+PREFIX proteoform: <http://nextprot.org/rdf/proteoform/>
+PREFIX chebi: <http://purl.obolibrary.org/obo/>
+PREFIX drugbankdrugs: <http://wifo5-04.informatik.uni-mannheim.de/drugbank/resource/drugs/>
+
+#Tissues in which a given protein is highly expressed
+
+select distinct ?tissue ?tisslab where {
+  ?_entry_iri :isoform ?iso.
+  # get all expression
+  ?iso :expression ?e1.
+  # highly expressed
+  ?e1 :evidence/:expressionLevel :High.
+  ?e1 :term ?tissue .
+  ?tissue rdfs:label ?tisslab .
+  ?tissue a :NextprotAnatomyCv  .
+  filter not exists {?tiss2 a :NextprotAnatomyCv  . ?tiss2 :childOf ?tissue filter (?tiss2 != ?tissue )}
+}
