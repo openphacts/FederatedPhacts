@@ -4,6 +4,8 @@
 #+   - nextprot
 #+ method: GET
 #+ pagination: 50
+#+ defaults:
+#+   - entry: http://nextprot.org/rdf/entry/NX_Q9Y6A2
 
 PREFIX : <http://nextprot.org/rdf#>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
@@ -35,7 +37,7 @@ PREFIX drugbankdrugs: <http://wifo5-04.informatik.uni-mannheim.de/drugbank/resou
 #Tissues in which a given protein is highly expressed
 
 select distinct ?tisslab where {
-  ?_entry :isoform ?iso.
+  ?_entry_iri :isoform ?iso.
   # get all expression
   ?iso :expression ?e1.
   # highly expressed 
