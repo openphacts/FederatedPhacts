@@ -1,7 +1,7 @@
 #+ summary: Returns information about a single compound
 #+ endpoint: https://query.wikidata.org/bigdata/namespace/wdq/sparql
 #+ tags:
-#+   - openphacts
+#+   - wikidata
 #+ method: GET
 #+ pagination: 50
 
