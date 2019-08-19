@@ -1,11 +1,9 @@
 #+ summary: Testing DBpedia endpoint
 #+ endpoint: http://dbpedia.org/sparql
 #+ tags:
-#+   - dbpedia
+#+   - test
 #+ method: GET
 #+ pagination: 50
-#+ defaults:
-#+   - type: http://dbpedia.org/ontology/Band
 
 SELECT ?molecule ?formula
 WHERE {
