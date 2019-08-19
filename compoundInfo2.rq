@@ -2,8 +2,7 @@
 #+ endpoint: https://query.wikidata.org/bigdata/namespace/wdq/sparql
 
 SELECT ?molecule ?moleculeLabel ?formula
-WHERE
-{
-	?molecule wdt:P274 ?formula .
-	SERVICE wikibase:label {  bd:serviceParam wikibase:language "en" . }
+WHERE {
+  ?molecule wdt:P274 ?formula .
+  SERVICE wikibase:label {  bd:serviceParam wikibase:language "en" . }
 } 
