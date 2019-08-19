@@ -1,4 +1,0 @@
-SELECT ?molecule ?formula
-WHERE {
-  ?molecule wdt:P274 ?formula .
-}
