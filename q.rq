@@ -1,11 +1,17 @@
 #+ summary: Compound information query
-#+ endpoint: https://query.wikidata.org/bigdata/namespace/wdq/sparql
+#+ endpoint: https://query.wikidata.org/sparql
 #+ tags:
 #+   - openphacts
 #+ method: GET
 #+ pagination: 50
 
-SELECT DISTINCT ?mol ?molLabel
+PREFIX bd: <http://www.bigdata.com/rdf#>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wd:  <http://www.wikidata.org/entity/>
+
+SELECT  ?mol ?molLabel
 WHERE {
     ?mol wdt:P31/wdt:P279* wd:Q66587127 .
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
 }
