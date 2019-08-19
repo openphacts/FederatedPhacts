@@ -8,7 +8,7 @@
 SELECT ?molecule ?moleculeLabel ?formule ?smiles ?inchiKey ?inchi ?logp ?molweight
 WHERE
 {
-	?molecule wdt:P274 ?formule;
+	?molecule wdt:P274 ?formule
     OPTIONAL {?molecule wdt:P233 ?smiles}
     OPTIONAL {?molecule wdt:P235 ?inchiKey;
       wdt:P234 ?inchi}
