@@ -8,8 +8,8 @@ PREFIX wikibase: <http://wikiba.se/ontology#>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wd:  <http://www.wikidata.org/entity/>
 
-SELECT  ?mol ?molLabel
+SELECT  ?molecule ?moleculeLabel ?formula
 WHERE {
-    ?mol wdt:P31/wdt:P279* wd:Q66587127 .
+    ?molecule wdt:P274 ?formula .
     SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
 }
