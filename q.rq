@@ -15,9 +15,9 @@ PREFIX wd:  <http://www.wikidata.org/entity/>
 SELECT ?_molecule_iriLabel ?formula ?smiles ?inchikey ?inchi ?logp ?molweight
 WHERE {
     ?_molecule_iri wdt:P274 ?formula .
-    OPTIONAL {?molecule wdt:P233 ?smiles .}
-    OPTIONAL {?molecule wdt:P235 ?inchikey ; wdt:P234 ?inchi .}
-    OPTIONAL {?molecule wdt:P2993 ?logp .}
-    OPTIONAL {?molecule wdt:P2067 ?molweight .}
+    OPTIONAL {?_molecule_iri wdt:P233 ?smiles .}
+    OPTIONAL {?_molecule_iri wdt:P235 ?inchikey ; wdt:P234 ?inchi .}
+    OPTIONAL {?_molecule_iri wdt:P2993 ?logp .}
+    OPTIONAL {?_molecule_iri wdt:P2067 ?molweight .}
     SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
 }
