@@ -12,11 +12,20 @@ PREFIX wikibase: <http://wikiba.se/ontology#>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wd:  <http://www.wikidata.org/entity/>
 
-SELECT ?CASnumber ?chebiID ?chemblID ?chemspiderID ?drugbankID ?gtpID ?pubchemID
+SELECT ?CASnumber ?chebiID ?chemblID ?chemblIRI ?chemblURL ?chemspiderID ?drugbankID ?gtpID ?pubchemID
 WHERE {
     OPTIONAL {?_wdID_iri wdt:P231 ?CASnumber .}
     OPTIONAL {?_wdID_iri wdt:P683 ?chebiID .}
-    OPTIONAL {?_wdID_iri wdt:P592 ?chemblID}
+    OPTIONAL {?_wdID_iri wdt:P592 ?chemblID .
+      VALUES ?ChEMBLIDdir { wdt:P592 }
+      OPTIONAL {
+        ?ChEMBLIDpred wikibase:directClaim ?ChEMBLIDdir .
+        ?ChEMBLIDpred wdt:P1630 ?ChEMBLformatterurl .
+        ?ChEMBLIDpred wdt:P1921 ?ChEMBLformatteriri .
+      }
+      BIND(IRI(REPLACE(?ChEMBLformatterurl, '\\$1', str(?chemblID))) AS ?chemblURL).
+      BIND(IRI(REPLACE(?ChEMBLformatteriri, '\\$1', str(?chemblID))) AS ?chemblIRI).
+    }
     OPTIONAL {?_wdID_iri wdt:P661 ?chemspiderID .}
     OPTIONAL {?_wdID_iri wdt:P715 ?drugbankID .}
     OPTIONAL {?_wdID_iri wdt:P595 ?gtpID .}
