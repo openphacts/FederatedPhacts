@@ -12,7 +12,7 @@ PREFIX wikibase: <http://wikiba.se/ontology#>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wd:  <http://www.wikidata.org/entity/>
 
-SELECT ?CASnumber ?chebiID ?chemblID ?chemblIRI ?chemblURL ?chemspiderID ?drugbankID ?gtpID ?pubchemID
+SELECT ?CASnumber ?chebiID ?chemblID ?chemblIRI ?chemblURL ?chemspiderID ?drugbankID ?drugbankIRI ?drugbankURL ?gtpID ?pubchemID
 WHERE {
     OPTIONAL {?_wdID_iri wdt:P231 ?CASnumber .}
     OPTIONAL {?_wdID_iri wdt:P683 ?chebiID .}
@@ -21,13 +21,26 @@ WHERE {
       OPTIONAL {
         ?ChEMBLIDpred wikibase:directClaim ?ChEMBLIDdir .
         ?ChEMBLIDpred wdt:P1630 ?ChEMBLformatterurl .
+      }
+      OPTIONAL {
         ?ChEMBLIDpred wdt:P1921 ?ChEMBLformatteriri .
       }
       BIND(IRI(REPLACE(?ChEMBLformatterurl, '\\$1', str(?chemblID))) AS ?chemblURL).
       BIND(IRI(REPLACE(?ChEMBLformatteriri, '\\$1', str(?chemblID))) AS ?chemblIRI).
     }
     OPTIONAL {?_wdID_iri wdt:P661 ?chemspiderID .}
-    OPTIONAL {?_wdID_iri wdt:P715 ?drugbankID .}
+    OPTIONAL {?_wdID_iri wdt:P715 ?drugbankID .
+      VALUES ?drugbankDir { wdt:P715 }
+      OPTIONAL {
+        ?drugbankPred wikibase:directClaim ?drugbankDir .
+        ?drugbankPred wdt:P1630 ?drugbankFormatterurl .
+      }
+      OPTIONAL {
+        ?drugbankPred wdt:P1921 ?drugbankFormatteriri .
+      }
+      BIND(IRI(REPLACE(?drugbankFormatterurl, '\\$1', str(?drugbankID))) AS ?drugbankURL).
+      BIND(IRI(REPLACE(?drugbankFormatteriri, '\\$1', str(?drugbankID))) AS ?drugbankIRI).
+    }
     OPTIONAL {?_wdID_iri wdt:P595 ?gtpID .}
     OPTIONAL {?_wdID_iri wdt:P662 ?pubchemID .}
     SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
