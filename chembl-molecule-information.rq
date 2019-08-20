@@ -1,0 +1,34 @@
+#+ summary: ChEMBL molecule information
+#+ endpoint: https://www.ebi.ac.uk/rdf/services/sparql
+#+ method: GET
+#+ pagination: 50
+#+ tags:
+#+   - chembl
+#+ defaults:
+#+   - molecule: http://rdf.ebi.ac.uk/resource/chembl/molecule/CHEMBL941
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX dbpedia2: <http://dbpedia.org/property/>
+PREFIX dbpedia: <http://dbpedia.org/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+PREFIX cco: <http://rdf.ebi.ac.uk/terms/chembl#>
+
+SELECT ?mw ?PSA ?logP
+WHERE {
+  ?_molecule_iri hasAttribute: ?prop1 .
+  ?prop1 a ?prop1Type ; hasValue: ?mw .
+  ?prop1Type rdfs:subClassOf mw: .
+  ?_molecule_iri hasAttribute: ?prop2 .
+  ?prop2 a ?prop2Type ; hasValue: ?PSA .
+  ?prop2Type rdfs:subClassOf psa: .
+  ?_molecule_iri hasAttribute: ?prop3 .
+  ?prop3 a ?prop3Type ; hasValue: ?logP .
+  ?prop3Type rdfs:subClassOf logP: .
+}
