@@ -2,15 +2,19 @@
 #+ endpoint: https://query.wikidata.org/sparql
 #+ method: GET
 #+ pagination: 50
+#+ tags:
+#+   - wikidata
+#+ defaults:
+#+   - molecule: http://www.wikidata.org/entity/Q18216
 
 PREFIX bd: <http://www.bigdata.com/rdf#>
 PREFIX wikibase: <http://wikiba.se/ontology#>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wd:  <http://www.wikidata.org/entity/>
 
-SELECT  ?molecule ?moleculeLabel ?formula ?smiles ?inchikey ?inchi ?logp ?molweight
+SELECT ?_molecule_iriLabel ?formula ?smiles ?inchikey ?inchi ?logp ?molweight
 WHERE {
-    ?molecule wdt:P274 ?formula .
+    ?_molecule_iri wdt:P274 ?formula .
     OPTIONAL {?molecule wdt:P233 ?smiles .}
     OPTIONAL {?molecule wdt:P235 ?inchikey ; wdt:P234 ?inchi .}
     OPTIONAL {?molecule wdt:P2993 ?logp .}
