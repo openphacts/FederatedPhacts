@@ -8,11 +8,12 @@ PREFIX wikibase: <http://wikiba.se/ontology#>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wd:  <http://www.wikidata.org/entity/>
 
-SELECT  ?molecule ?moleculeLabel ?formula ?smiles ?inchikey ?inchi ?logp
+SELECT  ?molecule ?moleculeLabel ?formula ?smiles ?inchikey ?inchi ?logp ?molweight
 WHERE {
     ?molecule wdt:P274 ?formula .
     OPTIONAL {?molecule wdt:P233 ?smiles .}
     OPTIONAL {?molecule wdt:P235 ?inchikey ; wdt:P234 ?inchi .}
     OPTIONAL {?molecule wdt:P2993 ?logp .}
+    OPTIONAL {?molecule wdt:P2067 ?molweight .}
     SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
 }
