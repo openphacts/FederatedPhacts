@@ -11,6 +11,6 @@ PREFIX wd:  <http://www.wikidata.org/entity/>
 SELECT  ?molecule ?moleculeLabel ?formula ?smiles
 WHERE {
     ?molecule wdt:P274 ?formula .
-    ?molecule wdt:P233 ?smiles .
+    OPTIONAL {?molecule wdt:P233 ?smiles .}
     SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
 }
