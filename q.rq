@@ -12,7 +12,7 @@ PREFIX wikibase: <http://wikiba.se/ontology#>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wd:  <http://www.wikidata.org/entity/>
 
-SELECT ?_molecule_iriLabel ?formula ?smiles ?inchikey ?inchi ?logp ?molweight
+SELECT ?formula ?smiles ?inchikey ?inchi ?logp ?molweight
 WHERE {
     ?_molecule_iri wdt:P274 ?formula .
     OPTIONAL {?_molecule_iri wdt:P233 ?smiles .}
