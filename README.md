@@ -4,7 +4,9 @@ This repo explores lightweight ways of integrating distributed data from the var
 
 There are two key approaches:
 * Using Federated SPARQL queries
+   * [Compare MW, logP and PSA for known oxidoreductase inhibitors](https://github.com/openphacts/FederatedPhacts/issues/3)
 * Exposing encapuslated sparql queries as web apis through [grlc.io](http://grlc.io). 
+   * [API](http://grlc.io/api/openphacts/FederatedPhacts/)
 
 Both APIs and SPARQL queries can be combined using juypter notebooks. Examples of test cases can be found in the notebook directory and executed using Binder:
 
