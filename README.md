@@ -1,6 +1,12 @@
 # FederatedPhacts
 
-This repo explores lightweight ways of integrating distributed data from the variety of life science infrastructures already available from a variety of organizations. 
+This repo explores lightweight ways of integrating distributed data from the variety of life science infrastructures already available.
+
+Sources currently used:
+   * [Wikidata](http://wikidata.org)
+   * [NextProt](https://www.nextprot.org)
+   * [EBI RDF Platform](https://www.ebi.ac.uk/rdf/)
+   * [Uniprot](http://uniprot.org)
 
 There are two key approaches:
 * Using Federated SPARQL queries
