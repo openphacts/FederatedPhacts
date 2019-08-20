@@ -13,5 +13,6 @@ WHERE {
     ?molecule wdt:P274 ?formula .
     OPTIONAL {?molecule wdt:P233 ?smiles .}
     OPTIONAL {?molecule wdt:P235 ?inchikey ; wdt:P234 ?inchi .}
+    OPTIONAL {?molecule wdt:P2993 ?logp .}
     SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
 }
