@@ -12,12 +12,13 @@ PREFIX wikibase: <http://wikiba.se/ontology#>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wd:  <http://www.wikidata.org/entity/>
 
-SELECT ?formula ?smiles ?inchikey ?inchi ?logp ?molweight
+SELECT ?moleculeLabel ?formula ?smiles ?inchikey ?inchi ?logp ?molweight
 WHERE {
-    ?_molecule_iri wdt:P274 ?formula .
-    OPTIONAL {?_molecule_iri wdt:P233 ?smiles .}
-    OPTIONAL {?_molecule_iri wdt:P235 ?inchikey ; wdt:P234 ?inchi .}
-    OPTIONAL {?_molecule_iri wdt:P2993 ?logp .}
-    OPTIONAL {?_molecule_iri wdt:P2067 ?molweight .}
+    BIND(?_molecule_iri AS ?molecule)
+    ?molecule wdt:P274 ?formula .
+    OPTIONAL {?molecule wdt:P233 ?smiles .}
+    OPTIONAL {?molecule wdt:P235 ?inchikey ; wdt:P234 ?inchi .}
+    OPTIONAL {?molecule wdt:P2993 ?logp .}
+    OPTIONAL {?molecule wdt:P2067 ?molweight .}
     SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
 }
