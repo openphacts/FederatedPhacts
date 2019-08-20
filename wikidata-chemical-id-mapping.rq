@@ -12,10 +12,14 @@ PREFIX wikibase: <http://wikiba.se/ontology#>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wd:  <http://www.wikidata.org/entity/>
 
-SELECT ?CASnumber ?chemblID ?drugbankID
+SELECT ?CASnumber ?chebiID ?chemblID ?chemspiderID ?drugbankID ?gtpID ?pubchemID
 WHERE {
     OPTIONAL {?_wdID_iri wdt:P231 ?CASnumber .}
+    OPTIONAL {?_wdID_iri wdt:P683 ?chebiID .}
     OPTIONAL {?_wdID_iri wdt:P592 ?chemblID}
+    OPTIONAL {?_wdID_iri wdt:P661 ?chemspiderID .}
     OPTIONAL {?_wdID_iri wdt:P715 ?drugbankID .}
+    OPTIONAL {?_wdID_iri wdt:P595 ?gtpID .}
+    OPTIONAL {?_wdID_iri wdt:P662 ?pubchemID .}
     SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
 }
