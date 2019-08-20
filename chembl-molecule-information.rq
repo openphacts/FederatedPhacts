@@ -25,7 +25,7 @@ PREFIX psa: <http://semanticscience.org/resource/CHEMINF_000307>
 PREFIX logP: <http://semanticscience.org/resource/CHEMINF_000295>
 PREFIX mw: <http://semanticscience.org/resource/CHEMINF_000216>
 
-SELECT ?mw ?PSA ?logP
+SELECT DISTINCT ?mw ?PSA ?logP
 WHERE {
   ?_molecule_iri hasAttribute: ?prop1 .
   ?prop1 a ?prop1Type ; hasValue: ?mw .
