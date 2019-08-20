@@ -1,4 +1,4 @@
-#+ summary: Compound information query
+#+ summary: Compound information query for a given wikidata compound
 #+ endpoint: https://query.wikidata.org/sparql
 #+ method: GET
 #+ pagination: 50
