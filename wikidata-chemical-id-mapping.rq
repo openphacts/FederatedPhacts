@@ -1,0 +1,19 @@
+#+ summary: Known mappings from wikidata to other chemical databases
+#+ endpoint: https://query.wikidata.org/sparql
+#+ method: GET
+#+ pagination: 50
+#+ tags:
+#+   - mappings
+#+ defaults:
+#+   - wdID: http://www.wikidata.org/entity/Q18216
+
+PREFIX bd: <http://www.bigdata.com/rdf#>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wd:  <http://www.wikidata.org/entity/>
+
+SELECT ?chemblID
+WHERE {
+    ?_wdID_iri wdt:P592 ?chemblID
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
