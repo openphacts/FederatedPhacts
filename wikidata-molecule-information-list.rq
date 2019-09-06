@@ -14,7 +14,7 @@ PREFIX wd:  <http://www.wikidata.org/entity/>
 
 SELECT ?moleculeLabel ?formula ?smiles ?inchikey ?inchi ?logp ?molweight
 WHERE {
-    VALUES ?molecule_iri {<?_moleculeList_iri>}
+    VALUES ?molecule_iri ?_moleculeList_iri
     ?molecule_iri wdt:P274 ?formula .
     ?molecule_iri rdfs:label ?moleculeLabel
     FILTER (langMatches( lang(?moleculeLabel), "EN" ) )
