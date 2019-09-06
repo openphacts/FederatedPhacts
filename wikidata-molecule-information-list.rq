@@ -5,7 +5,7 @@
 #+ tags:
 #+   - wikidata
 #+ defaults:
-#+   - inchiKey: 'IYRMWMYZSQPJKC-UHFFFAOYSA-N'
+#+   - inchiKey: IYRMWMYZSQPJKC-UHFFFAOYSA-N
 
 PREFIX bd: <http://www.bigdata.com/rdf#>
 PREFIX wikibase: <http://wikiba.se/ontology#>
