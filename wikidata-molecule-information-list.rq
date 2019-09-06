@@ -5,7 +5,7 @@
 #+ tags:
 #+   - wikidata
 #+ defaults:
-#+   - molecule: http://www.wikidata.org/entity/Q18216
+#+   - inchiKey: 'IYRMWMYZSQPJKC-UHFFFAOYSA-N'
 
 PREFIX bd: <http://www.bigdata.com/rdf#>
 PREFIX wikibase: <http://wikiba.se/ontology#>
@@ -14,11 +14,11 @@ PREFIX wd:  <http://www.wikidata.org/entity/>
 
 SELECT ?moleculeLabel ?formula ?smiles ?inchikey ?inchi ?logp ?molweight
 WHERE {
-    ?_molecule_iri wdt:P274 ?formula .
-    ?_molecule_iri rdfs:label ?moleculeLabel
+    ?molecule_iri wdt:P274 ?formula .
+    ?molecule_iri rdfs:label ?moleculeLabel
     FILTER (langMatches( lang(?moleculeLabel), "EN" ) )
-    OPTIONAL {?_molecule_iri wdt:P233 ?smiles .}
-    OPTIONAL {?_molecule_iri wdt:P235 ?inchikey ; wdt:P234 ?inchi .}
-    OPTIONAL {?_molecule_iri wdt:P2993 ?logp .}
-    OPTIONAL {?_molecule_iri wdt:P2067 ?molweight .}
+    OPTIONAL {?molecule_iri wdt:P233 ?smiles .}
+    {?molecule_iri wdt:P235 ?_inchikey ; wdt:P234 ?inchi .}
+    OPTIONAL {?molecule_iri wdt:P2993 ?logp .}
+    OPTIONAL {?molecule_iri wdt:P2067 ?molweight .}
 }
