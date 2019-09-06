@@ -5,7 +5,7 @@
 #+ tags:
 #+   - wikidata
 #+ defaults:
-#+   - molecule-list: http://www.wikidata.org/entity/Q18216
+#+   - moleculeList: http://www.wikidata.org/entity/Q18216
 
 PREFIX bd: <http://www.bigdata.com/rdf#>
 PREFIX wikibase: <http://wikiba.se/ontology#>
@@ -14,7 +14,7 @@ PREFIX wd:  <http://www.wikidata.org/entity/>
 
 SELECT ?moleculeLabel ?formula ?smiles ?inchikey ?inchi ?logp ?molweight
 WHERE {
-    VALUES ?molecule_iri {?_molecule-list_iri}
+    VALUES ?molecule_iri {?_moleculeList_iri}
     ?molecule_iri wdt:P274 ?formula .
     ?molecule_iri rdfs:label ?moleculeLabel
     FILTER (langMatches( lang(?moleculeLabel), "EN" ) )
